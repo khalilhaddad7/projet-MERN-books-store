@@ -11,7 +11,7 @@ const Banner = () => {
             captivating memoirs, this week's new releases offer something for everyone</p>
             <button className='btn-primary'>Subscribe</button>
         </div> 
-        <div className=' md:w-1/2 w-full flex items-center md:justify-end'> 
+        <div className=' md:w-1/2 flex md:justify-end'> 
         <img src={BannerImg} alt=""/>
 
         </div>
