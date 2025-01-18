@@ -2,7 +2,7 @@ import React from 'react'
 
 const Recommened = () => {
   return (
-    <div>Recommened</div>
+    <div>Recommenedddd</div>
   )
 }
 
