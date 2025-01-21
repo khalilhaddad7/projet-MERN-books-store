@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from './Banner'
 import TopSell from './TopSell'
 import Recommened from './Recommened'
+import News from './News'
 
 const home = () => {
   return (
@@ -9,6 +10,8 @@ const home = () => {
         <Banner/>
         <TopSell/>
         <Recommened/>
+        <News/>
+
     </>
   )
 }
