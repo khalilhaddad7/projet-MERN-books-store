@@ -8,9 +8,9 @@ import avatarImg from '../assets/avatar.png'
 import { useState } from "react";
 
 
-const currentUser = true  ;
 const Navbar = () => {
   const [isDropDownOpen,setisDropDownOpen] = useState(false)
+  const currentUser = false; 
   const navigation = [
     {name:'Dashboard', href:'/Dashboard'},
     {name:'Orders', href:'/orders'},
@@ -56,7 +56,7 @@ const Navbar = () => {
                       </div>
                     )
                   }
-                </> : <Links to="/login"><FaUser className=" size-5" /></Links>
+                </> : <Link to="/login"><FaUser className=" size-5" /></Link>
               }
             </div>
             
