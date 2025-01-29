@@ -6,10 +6,12 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { HiShoppingCart } from "react-icons/hi";
 import avatarImg from '../assets/avatar.png'
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
   const [isDropDownOpen,setisDropDownOpen] = useState(false)
+  const cartItems = useSelector(state => state.cart.cartItems)
   const currentUser = false; 
   const navigation = [
     {name:'Dashboard', href:'/Dashboard'},
@@ -63,11 +65,13 @@ const Navbar = () => {
             <button>
             <MdFavoriteBorder className=" size-7" />
             </button>
-            <Link to="/" className=" bg-primary p-1 sm:px-5 px-2 flex items-center rounded-sm">
+            <Link to="/cart" className=" bg-primary p-1 sm:px-5 px-2 flex items-center rounded-sm">
             <HiShoppingCart className=" size-5" />
-            <span>0</span>
+            {
+              cartItems.length > 0 ? <span className=" text-sm font-semibold sm:ml-1">{cartItems.length}</span> : <span className=" text-sm font-semibold sm:ml-1">0</span>
+            }
             </Link>
-            </div>
+           </div>
         </nav>
     </header>
   )
