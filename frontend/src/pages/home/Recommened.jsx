@@ -9,18 +9,17 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import BookCard from '../books/BookCard';
+import { useFetchAllBooksQuery } from '../../redux/features/cart/booksApi';
 
 const Recommened = () => {
-   const [books, setbooks] = useState([]);
      const [swiperInstance, setSwiperInstance] = useState(null); // Pour accéder au contrôleur de Swiper
+     const { data } = useFetchAllBooksQuery();
+     const books = data?.books || [];  // Récupérer uniquement le tableau des livres
+     
    
 
 
-    useEffect(() => {
-      fetch('books.json')
-        .then((res) => res.json())
-        .then((data) => setbooks(data));
-    }, []);
+    
 
     const handleSlideChange = (swiper) => {
       // Si l'utilisateur est à la dernière diapositive

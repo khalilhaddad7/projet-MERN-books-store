@@ -10,21 +10,24 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
-import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi';
+import { useFetchAllBooksQuery } from '../../redux/features/cart/booksApi';
 
 const categories = ['Choose a genre', 'Business', 'Fiction', 'Horror', 'Adventure'];
 
 const TopSell = () => {
   const [selectedCategory, setselectedCategory] = useState('choose a genre');
   const [swiperInstance, setSwiperInstance] = useState(null); // Pour accéder au contrôleur de Swiper
-  const {data: books = []} = useFetchAllBooksQuery() ;
-  console.log(books)
+  const { data } = useFetchAllBooksQuery();
+const books = data?.books || [];  // Récupérer uniquement le tableau des livres
+
+  
+  
   
 
   const filterbooks =
     selectedCategory === 'choose a genre'
       ? books
-      : books.filter((book) => book.category === selectedCategory.toLowerCase());
+      : books.filter(book => book.category === selectedCategory.toLowerCase());
 
   const handleSlideChange = (swiper) => {
     // Si l'utilisateur est à la dernière diapositive
