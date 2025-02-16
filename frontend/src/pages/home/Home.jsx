@@ -11,6 +11,7 @@ const home = () => {
         <TopSell/>
         <Recommened/>
         <News/>
+        
 
     </>
   )
