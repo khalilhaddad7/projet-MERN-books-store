@@ -7,12 +7,16 @@ import { HiShoppingCart } from "react-icons/hi";
 import avatarImg from '../assets/avatar.png'
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useAuth } from "../context/AuthContext";
 
 
 const Navbar = () => {
   const [isDropDownOpen,setisDropDownOpen] = useState(false)
   const cartItems = useSelector(state => state.cart.cartItems)
-  const currentUser = false; 
+  const {currentUser,logout} = useAuth()
+  const handlelogout = () =>{
+    logout()
+  }
   const navigation = [
     {name:'Dashboard', href:'/Dashboard'},
     {name:'Orders', href:'/orders'},
