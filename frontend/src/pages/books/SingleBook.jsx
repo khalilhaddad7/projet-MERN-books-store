@@ -8,14 +8,11 @@ import { addtocart } from '../../redux/features/cart/CartSlice'
 
 const SingleBook = () => {
   const { id } = useParams();
-  const { data, isLoading, isError, error } = useFetchbookbyIdQuery(id);
+  const { data, isLoading, isError,  } = useFetchbookbyIdQuery(id);
   
   const book = data?.getAbook || {}; // ✅ Extraire uniquement l'objet livre
   
-  console.log("Book ID:", id);
-  console.log("Book Data:", book);
-  console.log("Loading:", isLoading);
-  console.log("Error:", isError, error);
+ 
   
 
 
