@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { FaGoogle } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
+import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
+    const {loginUser,signInWithGoogle}= useAuth()
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -11,9 +14,26 @@ const Login = () => {
         formState: { errors },
       } = useForm()
     const [message,setMessage]=useState("")
-    const onSubmit = (data) => console.log(data)
-    const handleGoogleSignIn = () => {
+    // login user
+    const onSubmit = async (data) => { console.log(data)
+        try{
+            await loginUser(data.email , data.password)
+            alert("Login successfuly !")
+            navigate("/")
+        }catch(error){
+            setMessage("Please provide a valid email and password")
+            console.error(error)
+        }}
 
+    const handleGoogleSignIn = async () => {
+        try{
+            await signInWithGoogle()
+            alert("Login successfuly with google !")
+            navigate("/")
+        }catch(error){
+            alert("google Sign In Failed")
+            console.error(error)
+        }
     }
   return (
     <div className='h-[calc(100vh-120px)] flex items-center justify-center'>
@@ -48,7 +68,7 @@ const Login = () => {
             <p className="text-red-500 text-xs italic mb-3"></p>
             <div className="flex flex-wrap space-y-2.5 items-center justify-between">
                 <button 
-                    onClick={handleGoogleSignIn}
+                    onClick={onSubmit}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
                     Login
@@ -61,6 +81,7 @@ const Login = () => {
         </p>
         <div className="mt-4">
             <button
+                onClick={handleGoogleSignIn}
                 className="w-full flex flex-wrap gap-1 items-center justify-center bg-secondary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 <FaGoogle className="mr-2" />
                 Sign in with Google
